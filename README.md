@@ -21,7 +21,6 @@
 
 ## 系统架构
 
-```mermaid
 flowchart TB
     subgraph Input
         LR[LQ 图像]
@@ -53,9 +52,6 @@ flowchart TB
     SR --> VAE2 --> INV
     LRrec --> INV
     INV --> DEC --> OUT
-```
-
----
 
 ## 仓库结构（核心模块）
 
@@ -247,9 +243,9 @@ RevMark-SinSR/
 
 
 ## 项目声明
-项目名称：面对医学图像超分辨率增强的可逆数字水印方案RevmarkSinSR 
-项目作者：李长青
-作者单位：暨南大学网络空间安全学院
-开发语言：python
-框架：PyTorch SinSR
+项目名称：面对医学图像超分辨率增强的可逆数字水印方案RevmarkSinSR  
+项目作者：李长青  
+作者单位：暨南大学网络空间安全学院  
+开发语言：python  
+框架：PyTorch SinSR  
 核心技术：超分辨率、可逆数字水印、扩散网络、图像保护
