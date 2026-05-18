@@ -223,4 +223,23 @@ watermark:
 
 ## 引用
 
-若使用本代码，请同时引用 SinSR 及您论文/报告中对 RevMark 方法的描述（正式 BibTeX 可在发表后补充）。
+## 项目说明
+##
+
+##项目目录结构
+```
+RevMark-SinSR/
+├── configs/                    # OmegaConf 配置（模型 / 扩散 / 水印 / 数据 / 训练阶段）
+├── models/                     # UNet-Swin、Gaussian Diffusion、LR 恢复与存储相关网络
+├── ldm/                        # VQ 自编码器（VQModelTorch）
+├── datapipe/                   # 数据集与 Bicubic 等退化管线
+├── utils/                      # 图像 IO、裁切对齐、ROI 掩码与分割辅助
+├── watermark_codec.py          # 潜空间水印编解码（Gaussian Shading + ChaCha20）
+├── sampler.py                  # BaseSampler：加载权重、扩散采样、VAE 编解码
+├── inference_wm.py             # WatermarkSampler：encode_sr / extract_watermark / ROI 混合
+├── trainer.py                  # SinSR 蒸馏训练基类
+├── trainer_wm.py               # 水印联合训练（替换训练噪声、L_bin、攻击增强等）
+├── main_distill_wm.py          # 水印训练入口
+├── lr_storage_codec.py         # 可选：LR 字节级可逆存储（胶囊）
+└── eval_busi_wm_e2e.py         # BUSI 端到端评测（质量 / 水印 / 鲁棒性入口之一）
+```
