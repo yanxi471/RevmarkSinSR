@@ -1,0 +1,133 @@
+RevMark-SinSR 核心发布包 — 目录结构说明
+生成时间: 2026-05-18 20:10:40
+
+本包仅含核心训练/推理/评测代码与配置，不含 scripts/、result/、external/、weights/、data/。
+
+RevMarkSinSR-core/
+├── README.md
+├── requirements.txt
+├── requirements-windows.txt
+├── DIRECTORY_STRUCTURE.txt          # 本文件
+│
+├── configs/                         # 模型 / 扩散 / 水印 / 数据配置
+├── models/                          # UNet-Swin、扩散、LR 相关网络
+├── ldm/                             # VQ 自编码器
+├── datapipe/                        # 数据集与退化
+├── utils/                           # 图像与 ROI 工具
+│
+├── main_distill_wm.py               # 【训练入口】水印联合蒸馏
+├── main_distill.py                  # SinSR 蒸馏训练入口
+├── main_lr_storage.py               # LR 存储分支训练入口
+│
+├── inference_wm.py                  # 【推理主程序】嵌入 / 提取
+├── inference.py                     # SinSR 无水印推理
+├── sampler.py                       # BaseSampler
+├── watermark_codec.py               # 潜空间水印编解码
+├── lr_storage_codec.py              # LR 可逆存储编解码
+│
+├── trainer.py                       # 训练基类
+├── trainer_wm.py                    # 水印训练器
+├── trainer_lr_storage.py            # LR 存储训练器
+│
+├── eval_busi_wm_e2e.py              # BUSI 端到端评测
+├── eval_busi_wm_e2e_roi.py          # BUSI ROI 评测
+├── eval_med_wm_e2e_roi_generic.py   # 通用医学图像 ROI 评测
+├── eval_med_wm_robustness_generic.py
+└── eval_busi_compare_three_metrics_serial.py  # BUSI 三类指标对比（主评测编排）
+
+使用说明见 README.md。
+
+实际文件树:
+RevMarkSinSR-core/
+├── configs/
+│   ├── realsr_swinunet_realesrgan256.yaml
+│   ├── SinSR.yaml
+│   ├── SinSR_busi_finetune_nowm.yaml
+│   ├── SinSR_wm_busi_smoke.yaml
+│   ├── SinSR_wm_busi_smoke_64bit.yaml
+│   ├── SinSR_wm_busi_smoke_nowm.yaml
+│   ├── SinSR_wm_phaseA.yaml
+│   ├── SinSR_wm_phaseB.yaml
+│   ├── SinSR_wm_phaseC.yaml
+│   ├── SinSR_wm_phaseE_lsb.yaml
+│   ├── SinSR_wm_phaseE_predictor.yaml
+│   └── SinSR_wm_phaseEv3_h1stc.yaml
+├── datapipe/
+│   ├── degradation_bsrgan/
+│   │   ├── utils/
+│   │   │   └── test.png
+│   │   ├── __init__.py
+│   │   ├── bsrgan.py
+│   │   ├── bsrgan_light.py
+│   │   └── utils_image.py
+│   ├── __init__.py
+│   ├── datasets.py
+│   ├── datasets_cached.py
+│   ├── face_degradation_testing.py
+│   └── ffhq_degradation_dataset.py
+├── ldm/
+│   ├── models/
+│   │   └── autoencoder.py
+│   ├── modules/
+│   │   ├── diffusionmodules/
+│   │   │   ├── __init__.py
+│   │   │   ├── model.py
+│   │   │   ├── model_back.py
+│   │   │   ├── openaimodel.py
+│   │   │   ├── upscaling.py
+│   │   │   └── util.py
+│   │   ├── distributions/
+│   │   │   ├── __init__.py
+│   │   │   └── distributions.py
+│   │   ├── encoders/
+│   │   │   ├── __init__.py
+│   │   │   └── modules.py
+│   │   ├── vqvae/
+│   │   │   └── quantize.py
+│   │   ├── attention.py
+│   │   ├── ema.py
+│   │   └── quantize.py
+│   └── util.py
+├── models/
+│   ├── basic_ops.py
+│   ├── fp16_util.py
+│   ├── gaussian_diffusion.py
+│   ├── losses.py
+│   ├── lr_recovery.py
+│   ├── lr_storage_predictor.py
+│   ├── resample.py
+│   ├── respace.py
+│   ├── script_util.py
+│   ├── solvers.py
+│   ├── swin_transformer.py
+│   └── unet.py
+├── utils/
+│   ├── __init__.py
+│   ├── busi_gt_mask.py
+│   ├── busiqa.py
+│   ├── roi_segmenter.py
+│   ├── roi_wm_mask.py
+│   ├── util_common.py
+│   ├── util_image.py
+│   ├── util_net.py
+│   ├── util_opts.py
+│   └── util_sisr.py
+├── eval_busi_compare_three_metrics_serial.py
+├── eval_busi_wm_e2e.py
+├── eval_busi_wm_e2e_roi.py
+├── eval_med_wm_e2e_roi_generic.py
+├── eval_med_wm_robustness_generic.py
+├── inference.py
+├── inference_wm.py
+├── lr_storage_codec.py
+├── main_distill.py
+├── main_distill_wm.py
+├── main_lr_storage.py
+├── README.md
+├── requirements-windows.txt
+├── requirements.txt
+├── sampler.py
+├── trainer.py
+├── trainer_lr_storage.py
+├── trainer_wm.py
+└── watermark_codec.py

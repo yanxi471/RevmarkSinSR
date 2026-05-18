@@ -1,0 +1,24 @@
+# Windows：请先安装 PyTorch（CUDA 或 CPU），再安装本文件。
+# 见 docs/实验环境配置说明.txt 中的 pip 命令。
+#
+# 不包含：torch、torchvision、torchaudio、xformers（需与 CUDA 版本匹配单独安装）
+
+pycryptodome
+gradio==3.50
+scipy==1.9.3
+numpy
+opencv-python
+matplotlib
+timm
+pandas
+pillow
+scikit-learn
+scikit-image
+lpips
+loguru
+omegaconf
+six
+tqdm
+albumentations
+einops
+imageio
